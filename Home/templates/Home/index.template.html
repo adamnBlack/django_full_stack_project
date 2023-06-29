@@ -1,0 +1,136 @@
+<!-- 040220 -->
+{% extends 'base.template.html' %}
+
+{% load static %}
+
+{% block page_title %} Home {% endblock %}
+
+{% block content %}
+    
+    <!-- 1602 mb-3 -->
+    <div class="container-fluid mt-3 mb-3" id="bookSliderContainer">
+        <!-- Home Banner -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- 210220 remove container class -->
+                <div>
+                    <div class="jumbotron jumbotron" id="bannerBackground">
+                        <div class="text-center">
+                            <h2>Pick a book and read to your heart's content today!</h2>
+                            
+                            <div class="mt-5 bannerContainer">
+                                <h5>Free shipping for orders above $100</h5>
+                            </div>
+                            
+                            <a class="btn btn-outline-secondary mt-3" href="{% url 'show_books' %}" role="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    
+        <!-- Bestsellers -->
+        <h3>Bestsellers</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="bestSellers">
+ 
+                    {% for product in bestsellers %}
+                        <div>
+                            <a href='{% url "book_details" book_id=product.id %}'>
+                                <div class="card itemImg">
+                                    <img src="{{ product.image.cdn_url }}" class="card-img-top" alt="book image for {{ product.title }}">
+                
+                                    <div class="card-body">
+                                        
+                                        <h5 class="card-title">{{ product.title }}</h5>
+                
+                                        <div class="card-text">
+                                            
+                                            <div class="title">
+                                                by {{ product.author.all |join:", " }}
+                                            </div>
+                                            
+                                            <div class="title">
+                                                ${{ product.price }}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- New and Trending -->
+        <h3 class="mt-4">New and Trending</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="newAndTrending">
+                    {% for new_product_item in new_and_trending %}
+                        <div>
+                            <a href='{% url "book_details" book_id=new_product_item.id %}'>
+                                <div class="card itemImg homeBookSlider">
+                                    <img src="{{ new_product_item.image.cdn_url }}" class="card-img-top" alt="book image for {{ new_product_item.title }}">
+                
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ new_product_item.title }}</h5>
+                                        
+                                        <div class="card-text">
+                                            
+                                            <div class="author">
+                                                by {{ new_product_item.author.all |join:", " }}
+                                            </div>
+                                            
+                                            <div class="price">
+                                                ${{ new_product_item.price }}
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Best Deal Under $5.00 -->
+        <h3 class="mt-4">Book Under $5.00</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="bestDeal">
+                    {% for deal_item in best_deal_book %}
+                        <div>
+                            <a href='{% url "book_details" book_id=deal_item.id %}'>
+                                <div class="card itemImg">
+                                    <img src="{{ deal_item.image.cdn_url }}" class="card-img-top" alt="book image for {{ deal_item.title }}">
+                
+                                    <div class="card-body">
+                                        
+                                        <h5 class="card-title">{{ deal_item.title }}</h5>            
+
+                                        <div class="card-text">
+
+                                            <div class="author">
+                                                by {{ deal_item.author.all |join:", " }}
+                                            </div>
+                                            
+                                            <div class="price">
+                                                ${{ deal_item.price }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Unkempt', cursive, 'Sans-Serif';
+}
+
+#mainContainer {
+    min-height: 100%;
+}
+
+#contentContainer {
+    overflow: auto;
+    padding-bottom: 130px;
+}
+
+
+#footerContainer {
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    height: 130px;
+    margin-top: -130px;
+    clear: both;
+    color: #ffffff;
+}
+
+.customerServicesHeader, #aboutUsHeader, #ourStore {
+    color: #ff8000;
+}
+
+.navbar-brand-logo {
+    color: #b0bf1a;
+}
+
+
+ul {
+    padding-left: 20px;
+}
+
+.loginButton {
+    margin-top: 16px;
+}
+
+.signup-header {
+	text-align: center;
+}
+
+.homeLogo {
+    width: 32px;
+    height: 32px;
+}
+
+.itemImg img, .itemImgDisplay img {
+    height: 270px;
+}
+
+.slickSlide {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#bannerBackground {
+    background:url('/static/images/reading.jpg') no-repeat center center;
+    height: 562px;
+    background-size: cover;
+}
+
+.bannerContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.verticalDivider {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+/* the slides */
+/*https://stackoverflow.com/questions/30999076/how-add-spaces-between-slick-carousel-item*/
+.slick-slide {
+    margin: 0 10px;
+}
+
+/* the parent */
+.slick-list {
+    margin: 0 -10px;
+}
+
+/* fix height of card */
+/* modify height from 370 to 390 */
+/* 1002 */
+.card {
+    height: 420px;
+}
+
+/* 0802 change width */
+#allBooks {
+    width: 190px;
+}
+
+.slick-prev:before, .slick-next:before {
+    color:#ff4d4d;
+}
+
+
+.title, .author, .price {
+    font-size: 0.9em;
+}
+
+.card-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+#searchButton, #resetButton {
+    width: 70px;
+}
+
+.filterForm {
+    padding-left: 0;
+}
+
+#imageContainer {
+    align-items: center;
+    justify-content: center;
+}
+
+#editionDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+#quantityContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#image { 
+    width: 100%; 
+    height: 100%; 
+}
+
+.addToCartBookImg {
+    width: 10vw;
+}
+
+.bookImg {
+   width: 9vw; 
+}
+
+.deleteButton {
+    width: 45px;
+} 
+
+.qtyContainer {
+    width: 50px;
+}
+
+#placeOrderButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#updateFormContainer {
+    border-style: solid;
+    border-width: thick;
+    border-color: #117a8b;
+}
+
+
+#enquiryFormContainer {
+    padding: 15px;
+    border-style: solid;
+    border-color: #dcdcdc;
+}
+
+#bookSliderContainer {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+/* 210220 separator footer */
+.separator {
+	margin-bottom: 7px;
+	height: 2px;
+	width: 30px;
+	background: rgb(255, 0, 0);
+	z-index: 1;
+}
+
+
+#registrationContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+#ratingsCount {
+    margin-left: 3px;
+}
+
+#interpunct {
+    margin-right: 3px;
+}
+
+.navbar-nav a {
+    color: #ffffff !important;
+}
+
+/* 010320 */
+#footerContainer a {
+    color: #ffffff;    
+}
+
+.filter-option {
+    color: #000000;
+}
+
+#backToOrderSummary {
+    padding-left: 5px;
+}
+
+
+/* 010320 */
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 160px;
+}
+
+@media (max-width: 575.98px) { 
+    .title, .author, .price {
+        font-size: 1.2em;
+    }
+    
+    /* 010320 */
+    .itemImg img, .itemImgDisplay img {
+        height: 370px;
+    }
+    
+    
+    /* 010320 */
+    .card, #cardDisplay {
+        height: 490px;
+    }
+    
+    #contentContainer {
+        overflow: auto;
+        padding-bottom: 370px;
+    }
+    
+    #footerContainer {
+        position: relative;
+        width: 100%;
+        height: 370px;
+        margin-top: -370px;
+    }
+    
+    .bookImg {
+        width: 27vw;
+    }
+    
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 220px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+    #contentContainer {
+        padding-bottom: 150px;
+    }
+    
+    
+    #footerContainer {
+        height: 150px;
+        margin-top: -150px;
+
+    }   
+    
+    
+    .itemImg img {
+        height: 290px;
+    }
+
+    .card {
+        height: 440px;
+    }
+    
+    
+    .itemImgDisplay img {
+        height: 220px;
+    }
+
+    #cardDisplay {
+        height: 380px;        
+    }
+}

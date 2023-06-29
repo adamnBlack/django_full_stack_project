@@ -1,0 +1,131 @@
+{% extends 'base.template.html' %}
+
+{% load static %}
+
+{% block page_title %} Books Details {% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid mt-3 mb-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+            
+                <div>
+                    <div class="mb-2">
+                        {% for detail in book_detail %}
+                            <div>
+                                <img id="image" src="{{ detail.image.cdn_url }}" alt="book image for {{ detail.title }}">
+                            </div>    
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-12 col-md-6 mb-3">
+                <div>
+                    {% for detail in book_detail %}
+                        <div class="editionDetails">
+                            <div>
+                                <h4>
+                                    <strong>{{ detail.title }}</strong>
+                                </h4>
+                            
+                                <h6>
+                                    by {{ detail.author.all |join:", " }}
+                                </h6>
+                                
+                                <div>
+                                    <span id="starRating"></span> <small>{{ average_ratings }} </small> 
+                                    <small id="ratingsCount"><span id="interpunct">&bull;</span> {{ ratings_count_formatted }} ratings</small>
+                                </div>                                
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4><strong>Edition Overview</strong></h4>
+                                
+                                <div>
+                                    <span>ISBN: <span>{{ detail.ISBN }}</span></span>
+                                </div>
+                                
+                                <div>
+                                    <span>Release Date: <span>{{ detail.publishing_year }}</span></span>
+                                </div>
+                                
+                                <div>
+                                    <span>Publisher: <span>{{ detail.publisher }}</span></span>
+                                </div>
+                                
+                                <div>
+                                    <span>Pages: <span>{{ detail.pages }}</span></span>
+                                </div>
+                                
+                                <div>
+                                    <span>Genre: <span>{{ book_genre }}</span></span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4>
+                                    <strong>Book Description</strong>
+                                </h4>
+                                
+                                <div>
+                                    {{ detail.description }}
+                                </div>                                
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+                
+            <div class="col-sm-12 col-md-3">
+                {% for item in book_detail %}
+                    <h4>
+                        <strong>Price: ${{ item.price }}</strong>
+                    </h4>
+                    
+                    <div>
+                        {% if item.quantity > 0 %}
+                            <span>Stock: {{ item.quantity }} Available</span>
+                        {% else %}
+                            <span>Stock: Out of Stock</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-1">
+                        
+                        {% if request.user.is_authenticated %}
+                            <!-- check if book is in stock -->
+                            {% if item.quantity > 0 %}
+                                <form method="POST" action='{% url "add_to_cart" book_id=item.id %}' class="form-inline">
+                                    {% csrf_token %}
+                                    <div id="quantityContainer">
+                                        <label for="quantity" id="quantityLabel">Quantity: </label>
+                                        <input type="number" value="1" min="1" max="{{ item.quantity }}" step="1" id="quantity" name="quantity" required/>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-warning mt-3">Add To Cart</button>
+                                </form>
+                            {% else %}
+                                <h6>We are currently replenishing our stock!</h6>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login to start shopping!</a>
+                        {% endif %}
+                    </div>
+                    
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+        <!-- pass in average ratings to star-ratings.js script to convert the ratings into stars -->
+        <script>
+            let average_ratings = "{{ average_ratings }}";
+        </script>
+        
+        <script src="{% static 'js/star-ratings.js' %}"></script>
+        
+    </div>
+{% endblock %}
